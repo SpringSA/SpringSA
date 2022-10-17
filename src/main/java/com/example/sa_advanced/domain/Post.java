@@ -1,7 +1,10 @@
 package com.example.sa_advanced.domain;
 
 
+import com.example.sa_advanced.controller.request.PostRequestDto;
+import io.swagger.annotations.Info;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +13,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Builder
 @Data
 @Entity
 @AllArgsConstructor
@@ -30,10 +35,24 @@ public class Post extends Timestamped {
     private String title;
 
     @Column(nullable = false)
-    private String imageUrl;
+    private String content;
 
-    @Column(nullable = false)
-    private Integer likeCount;
+
+//    @Column(nullable = false)
+//    private String imageUrl;
+
+//    @Column(nullable = false)
+//    private Integer likeCount;
+
+
+
+    public void update(PostRequestDto postRequestDto) {
+        this.title = postRequestDto.getTitle();
+    }
+
+    public boolean validateMember(Member member) {
+        return !this.member.equals(member);
+    }
 
 
 

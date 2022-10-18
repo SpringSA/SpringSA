@@ -40,7 +40,7 @@ public class Comment extends Timestamped{
             return true;
         }
     }
-    // test
+    // test2
     /**
      * 혜수님~ 여기도 하실 때 주석 제거하고 사용해주세요:)
      */

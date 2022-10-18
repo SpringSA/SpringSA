@@ -4,6 +4,7 @@ import com.example.sa_advanced.domain.Member;
 import com.example.sa_advanced.domain.UserDetailsImpl;
 import com.example.sa_advanced.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,5 +24,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return member
                 .map(UserDetailsImpl::new)
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다."));
+
     }
 }

@@ -12,6 +12,7 @@ import java.util.Objects;
 @Builder // private 생성자를 가지는 클래스 Builder라는 이름의 내부 빌더 클래스를 생성하여 빌더패턴을 구현한다. 빌더 클래스를 생성하고자 하는 클래스 외부에서 빌더 인스턴스를 만들어서 사용할 이유는 없기 때문에 private 생성자로 접근을 차단한다.
 @Getter // Lombok 어노테이션으로, 클래스 레벨에 @Getter를 선언해줄경우, 모든 필드에 접근자와 설정자가 자동으로 생성된다.
 @NoArgsConstructor
+@Setter
 @AllArgsConstructor // Lombok 어노테이션으로, 모든 필드 값을 파라미터로 받는 생성자를 만들어 준다.
 @Entity
 public class Member extends Timestamped { // Timestamped 상속

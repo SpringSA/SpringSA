@@ -2,6 +2,7 @@ package com.example.sa_advanced.domain;
 
 
 import com.example.sa_advanced.controller.request.PostRequestDto;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.Info;
 import lombok.*;
 
@@ -35,6 +36,10 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String content;
 
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LikePost> likePosts = new ArrayList<>();
+
 
 //    @Column(nullable = false)
 //    private String imageUrl;
@@ -51,7 +56,9 @@ public class Post extends Timestamped {
     public boolean validateMember(Member member) {
         return !this.member.equals(member);
     }
-
+    public int countLike(){
+        return getLikePosts().size();
+    }
 
 
 

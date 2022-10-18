@@ -39,6 +39,11 @@ dependencies {
     //implementation 'io.springfox:springfox-swagger-ui:3.0.0'
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
     implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+
+    //mysql
+    implementation 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 }
 
 tasks.named('test') {

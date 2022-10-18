@@ -1,11 +1,14 @@
 package com.example.sa_advanced.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -32,6 +35,14 @@ public class Member extends Timestamped { // Timestamped 상속
 
     @Column(nullable= false) // @Column(nullable = false) null값 인정 하지 않겠다
     private String username;
+
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "member")
+    private List<LikePost> likePosts = new ArrayList<>();
+
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "member")
+    private List<LikeComment> likeComments = new ArrayList<>();
 
     @Override
     public boolean equals(Object object) {

@@ -1,26 +1,24 @@
 package com.example.sa_advanced.controller.response;
 
-import com.example.sa_advanced.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Builder
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostResponseDto {
+@Builder
+public class CommentResponseDto {
+
     private Long id;
-    private Member member;
     private String content;
-    private String title;
-    private List<CommentResponseDto> commentResponseDtoList;
-//    private String imageUrl;
-//    private String likeCount;
+    private String author;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+    //default
+    private boolean editCheck;
+
 }

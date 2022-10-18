@@ -1,11 +1,13 @@
 package com.example.sa_advanced.service;
 
 import com.example.sa_advanced.controller.request.PostRequestDto;
+import com.example.sa_advanced.controller.response.CommentResponseDto;
 import com.example.sa_advanced.controller.response.PostResponseDto;
 import com.example.sa_advanced.controller.response.ResponseDto;
 import com.example.sa_advanced.domain.Member;
 import com.example.sa_advanced.domain.Post;
 import com.example.sa_advanced.jwt.TokenProvider;
+import com.example.sa_advanced.repository.CommentRepository;
 import com.example.sa_advanced.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
-//    private final CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
 
     private final TokenProvider tokenProvider;
 
@@ -51,10 +53,8 @@ public class PostService {
                 PostResponseDto.builder()
                         .id(post.getId())
                         .title(post.getTitle())
+                        .member(post.getMember())
                         .content(post.getContent())
-//                        .comments(post.getComments().toString())
-//                        .imageUrl(post.getImageUrl())
-//                        .likeCount(String.valueOf(post.getLikeCount()))
                         .createdAt(post.getCreatedAt())
                         .modifiedAt(post.getModifiedAt())
                         .build()

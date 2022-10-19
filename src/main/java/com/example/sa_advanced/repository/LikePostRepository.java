@@ -10,4 +10,6 @@ import java.util.Optional;
 
 public interface LikePostRepository extends JpaRepository<LikePost, Long> {
     List<LikePost> findAllByPost(Post post);
+    List<LikePost> deleteLikePostBy();
+    Optional<LikePost> findByMemberAndPost(Member member, Post post);
 }

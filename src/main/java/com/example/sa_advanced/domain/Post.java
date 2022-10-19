@@ -2,6 +2,7 @@ package com.example.sa_advanced.domain;
 
 
 import com.example.sa_advanced.controller.request.PostRequestDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.Info;
 import lombok.*;
@@ -23,10 +24,12 @@ public class Post extends Timestamped {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="member_id", nullable = false)
     private Member member;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
@@ -36,8 +39,8 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String content;
 
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LikePost> likePosts = new ArrayList<>();
 
 

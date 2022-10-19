@@ -58,7 +58,7 @@ public class LikeCommentService {
         else {
             // 좋아요 취소
             comment.getLikeComments().remove(like);
-            member.getLikeComments().remove(like);
+//            member.getLikeComments().remove(like);
             likeCommentRepository.delete(like);
         }
 

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -41,30 +42,25 @@ public class LikePostService {
         Post post = postRepository.findById(post_id).orElse(null);
         if(post == null) return ResponseDto.fail("NOT_FOUND","게시글을 찾을 수 없습니다.");
 
-        LikePost like = null;
-        for(LikePost likeCheck : post.getLikePosts()){
-            if(likeCheck.getMember().getId().equals(member.getId())) {
-                like=likeCheck;
-                break;
-            }
-        }
-        System.out.println(like.getId());
+        Optional<LikePost> like = likePostRepository.findByMemberAndPost(member,post);
+//        System.out.println(like.getId());
 
-        if(like==null){
+        System.out.println(like);
+        if(!like.isPresent()){
             // 좋아요
-            like = new LikePost();
-            like.setMember(member);
-            like.setPost(post);
-            post.getLikePosts().add(like);
-            likePostRepository.save(like);
+            LikePost newlike = new LikePost();
+            newlike.setMember(member);
+            newlike.setPost(post);
+            post.getLikePosts().add(newlike);
+            likePostRepository.save(newlike);
         }
         else {
-
-
             // 좋아요 취소
-            post.getLikePosts().remove(like);
-            member.getLikePosts().remove(like);
-            likePostRepository.delete(like);
+            System.out.println("here");
+//            post.getLikePosts().remove(like);
+//            member.getLikePosts().remove(like);
+            likePostRepository.delete(like.get());
+//            likePostRepository.deleteById(5L);
         }
 
 

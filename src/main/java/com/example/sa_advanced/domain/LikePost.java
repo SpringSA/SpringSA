@@ -1,14 +1,12 @@
 package com.example.sa_advanced.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Setter
 @Getter
@@ -20,14 +18,13 @@ public class LikePost extends Timestamped{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonManagedReference
+    @JsonBackReference
     @JoinColumn(name = "post_id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
-    @JsonManagedReference
+    @JsonBackReference
     @JoinColumn(name = "member_id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
-
 }

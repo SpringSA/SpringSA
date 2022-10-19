@@ -2,13 +2,9 @@ package com.example.sa_advanced.domain;
 
 
 import com.example.sa_advanced.controller.request.PostRequestDto;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import io.swagger.annotations.Info;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,14 +20,9 @@ public class Post extends Timestamped {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="member_id", nullable = false)
     private Member member;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>();
 
     @Column(nullable = false)
     private String title;
@@ -39,9 +30,11 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String content;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LikePost> likePosts = new ArrayList<>();
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<LikePost> likePosts = new ArrayList<>();
 
 
 //    @Column(nullable = false)

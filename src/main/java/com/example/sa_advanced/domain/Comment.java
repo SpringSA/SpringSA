@@ -34,8 +34,8 @@ public class Comment extends Timestamped{
     private String content;
 
     @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LikeComment> likeComments = new ArrayList<>();
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<LikeComment> likeComments = new ArrayList<>();
 
 
     public boolean checkEdit(CommentRequestDto requestDto) {

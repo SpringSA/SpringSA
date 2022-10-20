@@ -8,4 +8,7 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findAllByPost(Post post);
+
+    List<Comment> findAllByMember(Member member); //mypage 추가 2022-10-20 오후 4시 45분
+    //findAllByMember
 }

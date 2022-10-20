@@ -3,9 +3,12 @@ package com.example.sa_advanced.domain;
 
 import com.example.sa_advanced.controller.request.CommentRequestDto;
 import com.example.sa_advanced.controller.response.CommentResponseDto;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -19,7 +22,7 @@ public class Comment extends Timestamped{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="member_id", nullable = false)
     private Member member;
 
@@ -27,8 +30,16 @@ public class Comment extends Timestamped{
     @JoinColumn(name="post_id", nullable = false)
     private Post post;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="comment_id",nullable = false) // 대댓글 id수정 comment_id -> parent_id 로 변경함
+//    private Comment comment;
+//
     @Column(nullable = false)
     private String content;
+
+//    @JsonManagedReference
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<LikeComment> likeComments = new ArrayList<>();
 
 
     public boolean checkEdit(CommentRequestDto requestDto) {
@@ -40,10 +51,7 @@ public class Comment extends Timestamped{
             return true;
         }
     }
-
-    /**
-     * 혜수님~ 여기도 하실 때 주석 제거하고 사용해주세요:)
-     */
-//    @Column(nullable = false)
-//    private int like_count;
+    public int countLike(){
+        return getLikeComments().size();
+    }
 }

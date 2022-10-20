@@ -15,11 +15,14 @@ import java.util.List;
 @AllArgsConstructor
 public class PostResponseDto {
     private Long id;
-    private Member member;
+    private String member;
     private String content;
     private String title;
     private List<CommentResponseDto> commentResponseDtoList;
-//    private String imageUrl;
+    private List<LikePostResponseDto> likePostResponseDtoList;
+    private int likeCount =0;
+
+    //    private String imageUrl;
 //    private String likeCount;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;

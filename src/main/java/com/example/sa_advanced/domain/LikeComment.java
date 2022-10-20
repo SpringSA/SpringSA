@@ -26,6 +26,6 @@ public class LikeComment {
 
     @JsonManagedReference
     @JoinColumn
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 }

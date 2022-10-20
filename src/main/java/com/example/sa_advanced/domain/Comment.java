@@ -22,7 +22,7 @@ public class Comment extends Timestamped{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="member_id", nullable = false)
     private Member member;
 
@@ -33,7 +33,7 @@ public class Comment extends Timestamped{
     @Column(nullable = false)
     private String content;
 
-    @JsonManagedReference
+//    @JsonManagedReference
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<LikeComment> likeComments = new ArrayList<>();
 

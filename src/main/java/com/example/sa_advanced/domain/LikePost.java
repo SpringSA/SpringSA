@@ -20,12 +20,11 @@ public class LikePost extends Timestamped{
 
     @JsonBackReference
     @JoinColumn(name = "post_id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
     @JsonBackReference
-    @JoinColumn
-    @ManyToOne
+    @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
-
 }

@@ -53,7 +53,7 @@ public class PostService {
                 PostResponseDto.builder()
                         .id(post.getId())
                         .title(post.getTitle())
-                        .member(post.getMember())
+                        .member(post.getMember().getNickname())
                         .content(post.getContent())
                         .createdAt(post.getCreatedAt())
                         .modifiedAt(post.getModifiedAt())

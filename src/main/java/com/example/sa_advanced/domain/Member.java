@@ -1,11 +1,15 @@
 package com.example.sa_advanced.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -32,6 +36,14 @@ public class Member extends Timestamped { // Timestamped 상속
 
     @Column(nullable= false) // @Column(nullable = false) null값 인정 하지 않겠다
     private String username;
+
+    @JsonBackReference
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "member",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LikePost> likePosts = new ArrayList<>();
+
+    @JsonBackReference
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "member",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LikeComment> likeComments = new ArrayList<>();
 
     @Override
     public boolean equals(Object object) {

@@ -57,7 +57,8 @@ public class MyPageService {
                             .id(comment.getId())
                             .author(comment.getMember().getNickname())
                             .content(comment.getContent())
-                            .likeCount(likePostRepository.countAllByCommentId(comment.getId()))
+//                            .likeCount(likePostRepository.countAllByCommentId(comment.getId()))
+                            .likeCount((int) comment.countLike()) // 2022-10-20 오후 10:01
                             .createdAt(comment.getCreatedAt())
                             .modifiedAt(comment.getModifiedAt())
                             .build()
@@ -119,7 +120,8 @@ public class MyPageService {
                             .id(likeComment.getComment().getId())
                             .author(likeComment.getComment().getMember().getNickname())
                             .content(likeComment.getComment().getContent())
-                            .likeCount(likeCommentRepository.countAllByCommentId(likeComment.getComment().getId())) // likeCommentRepository 상수 추가 2022-10-20 - 오후 4시 12분
+//                            .likeCount(likeCommentRepository.countAllByCommentId(likeComment.getComment().getId())) // likeCommentRepository 상수 추가 2022-10-20 - 오후 4시 12분
+                            .likeCount((long) likeComment.getComment().countLike())
                             .createdAt(likeComment.getComment().getCreatedAt())
                             .modifiedAt(likeComment.getComment().getModifiedAt())
                             .build()

@@ -26,4 +26,6 @@ public class LikeComment {
     @JoinColumn
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.sa_advanced.controller.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +17,9 @@ public class LikeCommentResponseDto {
     private String author; // mypage 추가 2022-10-20 - 오후 3시 53분
     private String content; // mypage 추가 2022-10-20 - 오후 3시 53분
     private Long likeCount; // mypage 추가 2022-10-20 - 오후 3시 53분
-    private String likeOwner;
+
+    @JsonIgnore
+    private String likeOwner;  // likeOnwer likecomment & likepost ignore 처리함니다 2022-10-20- 오후 10시25분
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }

@@ -26,8 +26,8 @@ public class LikePost extends Timestamped{
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    @JsonBackReference
-    @JoinColumn(name = "comment_id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Comment comment;
+//    @JsonBackReference
+//    @JoinColumn(name = "comment_id")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Comment comment;
 }

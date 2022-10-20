@@ -98,6 +98,7 @@ public class MyPageService {
             likePostResponseDtoList.add(
                       LikePostResponseDto.builder()
                               .id(likePost.getPost().getId())
+                           //   .likeOwner(likePost.getPost().get) like owner  likeOnwer likecomment & likepost ignore 처리함니다 2022-10-20- 오후 10시25분
                               .title(likePost.getPost().getTitle())
                               .member(likePost.getPost().getMember().getNickname())
                               .content(likePost.getPost().getContent())

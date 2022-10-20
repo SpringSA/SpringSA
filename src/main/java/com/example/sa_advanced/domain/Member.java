@@ -1,5 +1,6 @@
 package com.example.sa_advanced.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -36,12 +37,12 @@ public class Member extends Timestamped { // Timestamped 상속
     @Column(nullable= false) // @Column(nullable = false) null값 인정 하지 않겠다
     private String username;
 
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "member")
+    @JsonBackReference
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "member",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LikePost> likePosts = new ArrayList<>();
 
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "member")
+    @JsonBackReference
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "member",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LikeComment> likeComments = new ArrayList<>();
 
     @Override

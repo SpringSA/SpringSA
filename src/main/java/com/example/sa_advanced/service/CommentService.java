@@ -54,6 +54,7 @@ public class CommentService {
                 .member(userDetails.getMember())
                 .post(post)
                 .content(requestDto.getContent())
+
                 .build();
         commentRepository.save(comment);
 

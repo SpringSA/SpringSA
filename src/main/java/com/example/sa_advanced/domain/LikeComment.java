@@ -2,13 +2,11 @@ package com.example.sa_advanced.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @Setter
 @Getter
 @NoArgsConstructor
@@ -28,4 +26,6 @@ public class LikeComment {
     @JoinColumn
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+
+
 }

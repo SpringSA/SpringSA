@@ -1,13 +1,11 @@
 package com.example.sa_advanced.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @Setter
 @Getter
 @NoArgsConstructor
@@ -27,4 +25,9 @@ public class LikePost extends Timestamped{
     @JoinColumn(name = "member_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+
+//    @JsonBackReference
+//    @JoinColumn(name = "comment_id")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Comment comment;
 }

@@ -10,7 +10,11 @@ import java.util.Optional;
 
 public interface LikeCommentRepository extends JpaRepository<LikeComment, Long> {
     List<LikeComment> findAllByComment(Comment comment);
+
+
     Optional<LikeComment> findByMemberAndComment(Member member, Comment comment);
 
+    List<LikeComment> findAllByMember(Member member);
+//    Long countAllByCommentId(Long commentId);
 
 }
